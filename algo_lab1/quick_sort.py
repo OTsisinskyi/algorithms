@@ -48,7 +48,6 @@ def quick_sort(array_for_quicksort, start, end, order):
         return array_for_quicksort.reverse()
 
 
-
 if __name__ == '__main__':
     enter_array = sys.argv[1:-1]
     enter_asc_or_desc = sys.argv[-1]
@@ -61,11 +60,3 @@ if __name__ == '__main__':
           f"Comparisons: {comparisons} \n"
           f"Swaps: {swaps} \n"
           f"Sorted array: {ready_array}")
-
-
-
-
-
-
-
-
