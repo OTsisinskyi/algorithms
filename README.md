@@ -1,1 +1,1 @@
-implementation of breadth first search
+implementation of Ford-Fulkerson algorithm for maximum flow problem
