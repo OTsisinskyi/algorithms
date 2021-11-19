@@ -19,13 +19,13 @@ class Graph:
         parent[self.source] = -1
 
         while len(queue) > 0:
-            vertical = queue.pop(0)
-            for horizontal in range(0, self.number_of_lines):
+            u = queue.pop(0)
+            for v in range(0, self.number_of_lines):
                 # якщо існує шлях між u та v, і він не відвіданий та його значеня більше 0
-                if visited[horizontal] == False and self.graph[vertical][horizontal] > 0:
-                    queue.append(horizontal)
-                    visited[horizontal] = True
-                    parent[horizontal] = vertical
+                if visited[v] == False and self.graph[u][v] > 0:
+                    queue.append(v)
+                    visited[v] = True
+                    parent[v] = u
 
         if visited[self.sink]:
             return True
