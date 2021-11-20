@@ -21,7 +21,7 @@ class Graph:
         while len(queue) > 0:
             u = queue.pop(0)
             for v in range(0, self.number_of_lines):
-                # якщо існує шлях між u та v, і він не відвіданий та його значеня більше 0
+                
                 if visited[v] == False and self.graph[u][v] > 0:
                     queue.append(v)
                     visited[v] = True
@@ -41,14 +41,12 @@ class Graph:
             path_flow = math.inf
             v = self.sink
 
-            # пошук мінімального значення на шляху
             while v != self.source:
                 u = parent[v]
                 path_flow = min(path_flow, self.graph[u][v])
                 v = parent[v]
             v = self.sink
 
-            # встановлює максимальний потік на шляху
             while v != self.source:
                 u = parent[v]
                 self.graph[u][v] -= path_flow
