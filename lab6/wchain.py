@@ -7,52 +7,25 @@ def read_file(file_path):
     return list_of_word
 
 
-def maximum_chain(words: list):
-    words = sorted(words, key=len, reverse=True)
-    chain_result = []
-    literally_words = []
-
-    for word in words:
-        literally_words.append(get_literally(str(word)))
-
-    chain_result.append(literally_words[0])
-    literally_words = literally_words[1:]
-    temp = []
-
-    while literally_words:
-        current = chain_result[-1]
-        for i in current:
-            for j in literally_words[0]:
-                if i == j:
-                    temp.append(i)
-
-        if temp in literally_words and len(temp) == len(current) - 1:
-            chain_result.append(temp)
-
-        literally_words = literally_words[1:]
-        temp = []
-    output = []
-    for item in chain_result:
-        output.append(get_word(item))
-
-    return output
-
-
-def get_literally(word):
-    item = []
-    for i in word:
-        item.append(i)
-    return item
-
-
-def get_word(literally):
-    return "".join(literally)
+def max_chain(words):
+    words = sorted(words, key=len)
+    chain_words = {}
+    result_list = []
+    len_chain = 1
+    if len(words) == 0:
+        return len(words)
+    else:
+        for word in words:
+            for letter in range(0, len(word)):
+                possible_word = word[:letter] + word[letter + 1:]
+                if possible_word in chain_words and len_chain < chain_words[possible_word]:
+                    len_chain = chain_words[possible_word]
+                    result_list.append(word)
+            chain_words[word] = len_chain + 1
+        return len_chain
 
 
 if __name__ == '__main__':
-    file = "wchain.in"
-    word_list = read_file(file)
-    result = maximum_chain(word_list)
-    print(f"List chain: {result} \n"
-          "Length: ", len(result))
-
+    data = read_file('wchain.in')
+    result = max_chain(data)
+    print(f"Max chain -> {result}")
